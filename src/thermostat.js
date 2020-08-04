@@ -1,5 +1,8 @@
 class Thermostat {
-  temperature() {
-  return 20;
+  constructor(){
+    this.temperature = 20
+  }
+  increase(number) {
+    return this.temperature += number;
   }
 }
