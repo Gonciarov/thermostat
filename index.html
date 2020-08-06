@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
+      <link href="style.css" type="text/css" rel="stylesheet">
+      <title>Thermostat</title>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+      <h1>Thermostat</h1>
+
+    <section class ="example_c" style="width:100px;">
+        <select id="current-city" value="london">
+          <option value="london">London</option>
+          <option value="visaginas">Visaginas</option>
+          <option value="moscow">Moscow</option>
+          <option value="key west">Key West</option>
+        </select>
+</section>
+        <h1 style="font-size:30px;">Current temperature: <span id="current-temperature"></span>&#8451;</h1>
+        <h1 style="font-size:100px;"> <span id="temperature"></span>&#8451;</h1>
+    <section>
+
+      <p>
+
+        <button class ="example_c" id="reset">reset</button>
+        <span id="power-saving-status"></span>
+        <button class ="example_c" id="powersaving-on">PSM on</button>
+        <button class ="example_c" id="powersaving-off">PSM off</button>
+        <button class ="example_c" id="increase">+</button>
+        <button class ="example_c" id="decrease">—</button>
+      </p>
+      <h1 style="font-size:30px;" id="psm-status"></h1>
+    </section>
+    </div>
+    </div>
+    <script src="src/thermostat.js"></script>
+    <script src="jquery-3.5.1.js"></script>
+    <script src="interface.js"></script>
+  </body>
+</html>

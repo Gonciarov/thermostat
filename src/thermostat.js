@@ -1,35 +1,56 @@
 class Thermostat {
   constructor(){
     this.temperature = 20
-    this.power_saving_mode = false
-    this.max_temperature = 32
+    this.power_saving_mode = true
+    this.max_temperature = 25
   }
 
-  max_temperature(){
-    switch (this.power_saving_mode) {
-      case true:
-      this.max_temperature = 25
-      break;
+  currentUsage(){
+    if (this.temperature < 18)
+      {return 'Low_usage'}
+    if (this.temperature <= 25 )
+      {return 'Medium_usage'}
+    return 'High_usage'
   }
-}
 
-  increase(number) {
-    this.temperature += number;
+  increase() {
+    if (this.power_saving_mode === false)
+      {this.max_temperature = 32}
+      if (this.power_saving_mode === true)
+        {this.max_temperature = 25}
+    this.temperature += 1;
     if (this.temperature > this.max_temperature)
-      {throw new Error("That's too much")};
+      { this.temperature = this.max_temperature;
+        throw new Error("That's too much")};
     return this.temperature;
 
   }
 
-  power_saving_mode_tumbler(){
-    !this.power_saving_mode;
+  power_saving_mode_on(){
+    this.power_saving_mode = true;
+    this.temperature = 20;
   }
 
+  power_saving_mode_off(){
+    this.power_saving_mode = false;
+  }
 
-  decrease(number){
-    this.temperature -= number;
+  reset(){
+    this.temperature = 20;
+  }
+  psmStatus(){
+    if (this.power_saving_mode === true)
+    {return 'ON'}
+    if (this.power_saving_mode === false)
+    {return 'OFF'}
+  }
+
+  decrease(){
+
+    this.temperature -= 1;
     if (this.temperature < 10)
-      {throw new Error("10 is minimum")};
+      { this.temperature = 10;
+        throw new Error("10 is minimum")};
     return this.temperature;
 
   }
@@ -37,6 +58,10 @@ class Thermostat {
 }
 
 var a = new Thermostat;
-a.power_saving_mode_tumbler();
-a.decrease(8)
-console.log(a.temperature)
+
+a.power_saving_mode_off();
+
+console.log(a.psmStatus());
+for (i = 0; i < 11; i++) {
+  a.increase();
+};

@@ -14,7 +14,9 @@ describe("Thermostat", function() {
 
   describe('increase temperature', function() {
     it('can increase the temperature', function() {
-      thermostat.increase(5);
+      for (i = 0; i < 5; ++i) {
+        thermostat.increase();
+      }
       expect(thermostat['temperature']).toEqual(25);
 
     });
@@ -23,7 +25,9 @@ describe("Thermostat", function() {
 
   describe('decrease temperature', function() {
     it('can decrease the temperature', function() {
-      thermostat.decrease(5);
+      for (i = 0; i < 5; ++i) {
+        thermostat.decrease();
+      }
       expect(thermostat['temperature']).toEqual(15);
 
     });
@@ -32,21 +36,40 @@ describe("Thermostat", function() {
 
   describe('throws an error for min', function() {
     it('can throw an error for too low', function() {
-
-      expect(function() {thermostat.decrease(11)}).toThrowError("10 is minimum");
+      for (i = 0; i < 10; ++i) {
+        thermostat.decrease();
+      }
+      expect(function() {thermostat.decrease()}).toThrowError("10 is minimum");
     });
   });
   describe('throws an error for max', function() {
     it('can throw an error for too high temperature', function() {
-
-      expect(function() {thermostat.increase(20)}).toThrowError("That's too much");
+      for (i = 0; i < 5; ++i) {
+        thermostat.increase();
+      }
+      expect(function() {thermostat.increase()}).toThrowError("That's too much");
     });
   });
   describe('power save mode can be switch on and off', function() {
     it('power save mode can be boolean', function() {
 
-      expect(thermostat['power_saving_mode']).toBeFalsy();
+      expect(thermostat['power_saving_mode']).toBeTruthy();
 
+    });
+  });
+  describe ('reset', function() {
+    it ('can reset temperature to 20 degrees', function() {
+      thermostat.increase();
+      thermostat.reset();
+      expect(thermostat.temperature).toEqual(20);
+    });
+  });
+  describe ('current_usage', function() {
+    it ('can indicate low, medium or high usage', function() {
+      thermostat.decrease()
+      thermostat.decrease()
+      thermostat.decrease()
+      expect(thermostat.currentUsage()).toEqual('Low_usage')
     });
   });
 });
